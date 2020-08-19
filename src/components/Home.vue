@@ -55,7 +55,7 @@
 <script>
   import { mapState } from 'vuex'
   export default {
-    name: 'HelloWorld',
+    name: 'home',
 
     data() {
       return {
