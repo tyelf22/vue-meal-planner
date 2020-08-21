@@ -1,21 +1,41 @@
 <template>
-    <div>
+    <v-container class="d-flex flex-column justify-center">
         <h1>Register page</h1>
 
-        <input 
-          v-model="email"
-          type="email" 
-          name="email" 
-          placeholder="email" />
-          <br>
-        <input 
-        v-model="password"
-          type="password" 
-          name="password" 
-          placeholder="password" />
-          <br>
-        <v-btn @click="register" color="primary">Register</v-btn>
-    </div>
+    <v-form v-model="valid">
+      <v-container>
+        <v-row>
+          <v-col
+            cols="12"
+            md="6"
+          >
+            <v-text-field
+              v-model="email"
+              :rules="emailRules"
+              label="E-mail"
+              required
+            ></v-text-field>
+            
+          </v-col>
+          <v-col
+            cols="12"
+            md="6"
+          >
+            <v-text-field
+              v-model="password"
+              :rules="passwordRules"
+              :counter="8"
+              label="Password"
+              required
+            ></v-text-field>
+          </v-col>
+        </v-row>
+        <v-btn :disabled="!valid" @click="register" max-width="100px" color="primary">Register</v-btn>
+      </v-container>
+    </v-form>
+    
+
+    </v-container>
 </template>
 
 <script>
@@ -25,9 +45,17 @@
 
     data() {
       return {
+        valid: false,
+        password:'',
+        passwordRules: [
+          v => !!v || 'Password is required',
+          v => v.length >= 8 || 'Password must be more than 8 characters long',
+        ],
         email: '',
-        password: '',
-
+        emailRules: [
+          v => !!v || 'E-mail is required',
+          v => /.+@.+/.test(v) || 'E-mail must be valid',
+        ],
       }    
     },
     methods: {
