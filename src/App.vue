@@ -4,6 +4,7 @@
       app
       color="primary"
       dark
+      class="appBar"
     >
       <div class="d-flex align-center">
         <v-img
@@ -14,15 +15,22 @@
           transition="scale-transition"
           width="40"
         />
-        <h1>Meal Planner</h1>
+        <router-link id="mealPlannerTitle" to="/"><h1>Meal Planner</h1></router-link>
       </div>
 
       <v-spacer></v-spacer>
+      <div class="navLinks">
+        <router-link class="rLink" to="/profile">Profile</router-link>
+        <router-link class="rLink" to="/register">Register</router-link>
+        <router-link class="rLink" to="/login">Login</router-link>
+      </div>
 
     </v-app-bar>
 
     <v-content>
-      <router-view />
+      <v-container>
+        <router-view />
+      </v-container>
     </v-content>
   </v-app>
 </template>
@@ -41,3 +49,22 @@ export default {
   }),
 };
 </script>
+
+<style scoped>
+  #mealPlannerTitle{
+    color: white;
+    text-decoration: none;
+  }
+
+  .navLinks {
+    margin-right: 10%;
+  }
+  .navLinks .rLink {
+    padding-right: 20%;
+    cursor: pointer;
+    color: white;
+    text-decoration: none;
+  }
+
+
+</style>

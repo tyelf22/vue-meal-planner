@@ -10,6 +10,18 @@
             md="6"
           >
             <v-text-field
+              v-model="name"
+              :rules="nameRules"
+              label="Name"
+              required
+            ></v-text-field>
+            
+          </v-col>
+           <v-col
+            cols="12"
+            md="6"
+          >
+            <v-text-field
               v-model="email"
               :rules="emailRules"
               label="E-mail"
@@ -17,15 +29,48 @@
             ></v-text-field>
             
           </v-col>
+          
+        </v-row>
+        <v-row>
           <v-col
             cols="12"
-            md="6"
+            md="4"
+          >
+            <v-text-field
+              v-model="username"
+              :rules="usernameRules"
+              type="text"
+              label="Username"
+              name="username"
+              required
+            ></v-text-field>
+          </v-col>
+
+          <v-col
+            cols="12"
+            md="4"
           >
             <v-text-field
               v-model="password"
               :rules="passwordRules"
               :counter="8"
+              type="password"
               label="Password"
+              name="password"
+              required
+            ></v-text-field>
+          </v-col>
+          <v-col
+            cols="12"
+            md="4"
+          >
+            <v-text-field
+              v-model="confirmPassword"
+              :rules="passwordRules"
+              :counter="8"
+              type="password"
+              label="Confirm Password"
+              name="confirmPassword"
               required
             ></v-text-field>
           </v-col>
@@ -39,12 +84,20 @@
 </template>
 
 <script>
-  import AuthenticationService from '../services/authenticationService'
+  //import AuthenticationService from '../services/authenticationService'
   export default {
     name: 'register',
 
     data() {
       return {
+        name: '',
+        nameRules: [
+          v => !!v || 'Name is required'
+        ],
+        username: '',
+        usernameRules: [
+          v => !!v || 'Username is required'
+        ],
         valid: false,
         password:'',
         passwordRules: [
@@ -59,13 +112,13 @@
       }    
     },
     methods: {
-      async register() {
-        const response = await AuthenticationService.register({
-          email: this.email,
-          password: this.password
-        })
-        console.log(response.data)
-      }
+      // async register() {
+      //   const response = await AuthenticationService.register({
+      //     email: this.email,
+      //     password: this.password
+      //   })
+      //   console.log(response.data)
+      // }
     }
   }
 </script>
