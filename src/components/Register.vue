@@ -76,6 +76,7 @@
           </v-col>
         </v-row>
         <v-btn :disabled="!valid" @click="register" max-width="100px" color="primary">Register</v-btn>
+        <router-link class="cardLink ml-3" to="/login">Already have an account?</router-link>
       </v-container>
     </v-form>
     
@@ -100,6 +101,7 @@
         ],
         valid: false,
         password:'',
+        confirmPassword: '',
         passwordRules: [
           v => !!v || 'Password is required',
           v => v.length >= 8 || 'Password must be more than 8 characters long',
@@ -124,5 +126,7 @@
 </script>
 
 <style scoped>
-
+  .cardLink{
+    text-decoration: none;
+  }
 </style>

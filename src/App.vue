@@ -20,9 +20,9 @@
 
       <v-spacer></v-spacer>
       <div class="navLinks">
-        <router-link class="rLink" to="/profile">Profile</router-link>
-        <router-link class="rLink" to="/register">Register</router-link>
-        <router-link class="rLink" to="/login">Login</router-link>
+        <router-link v-if="isLoggedIn" class="rLink" to="/profile">Profile</router-link>
+        <router-link v-if="!isLoggedIn" class="rLink" to="/register">Register</router-link>
+        <router-link v-if="!isLoggedIn" class="rLink" to="/login">Login</router-link>
       </div>
 
     </v-app-bar>
@@ -36,9 +36,14 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex"
 
 export default {
   name: 'App',
+
+  computed: {
+    ...mapGetters(['isLoggedIn'])
+  },
 
   components: {
  
